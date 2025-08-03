@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhay Singh - Sr. Technical Associate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-dark-purple: #0a001a;
+            --bg-gradient-start: #1a0537;
+            --bg-gradient-end: #0f0221;
+            --accent-green: #00f5c3;
+            --text-light: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark-purple);
+            color: var(--text-light);
+            background-image: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+        }
+
+        .aurora-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+            background: 
+                radial-gradient(ellipse at 70% 20%, var(--accent-green), transparent 50%),
+                radial-gradient(ellipse at 30% 80%, #5a189a, transparent 50%);
+            animation: aurora 20s linear infinite;
+        }
+
+        @keyframes aurora {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .section-title {
+            @apply text-4xl font-bold text-white mb-12 text-center;
+            text-shadow: 0 0 10px var(--accent-green);
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .glass-card:hover {
+            transform: perspective(1000px) rotateY(5deg) rotateX(10deg) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 20px var(--accent-green);
+            border-color: var(--accent-green);
+        }
+
+        .nav-link {
+            @apply px-4 py-2 rounded-full text-sm font-medium text-gray-300 hover:text-white transition-all duration-300;
+            position: relative;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--accent-green);
+            color: var(--bg-dark-purple) !important;
+            text-shadow: none;
+        }
+
+        .skill-tag {
+            @apply bg-gray-700/50 text-teal-200 text-sm font-medium px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-110 hover:bg-accent-green hover:text-bg-dark-purple cursor-pointer;
+            border: 1px solid var(--accent-green);
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 18px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-image: linear-gradient(to bottom, var(--accent-green), #374151);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--accent-green);
+            border: 3px solid var(--bg-dark-purple);
+            transition: transform 0.3s ease;
+            box-shadow: 0 0 10px var(--accent-green);
+        }
+        
+        .timeline-item:hover::before {
+            transform: scale(1.3);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .magnetic-icon {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        /* Modal styles */
+        .modal-overlay {
+            @apply fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 transition-opacity duration-300;
+        }
+        .modal-content {
+            @apply bg-gray-800 rounded-lg shadow-2xl p-8 max-w-2xl w-full m-4 transform transition-transform duration-300 scale-95;
+            border: 1px solid var(--accent-green);
+        }
+
+        /* Animated Profile Symbol */
+        .profile-symbol-container {
+            width: 192px; /* w-48 */
+            height: 192px; /* h-48 */
+            margin: 0 auto 2rem auto; /* mx-auto mb-8 */
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .profile-symbol-container svg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .glowing-orb {
+            filter: drop-shadow(0 0 10px var(--accent-green));
+        }
+
+        @keyframes rotate-right {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes rotate-left {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        .orb-ring-1 { animation: rotate-right 10s linear infinite; transform-origin: center; }
+        .orb-ring-2 { animation: rotate-left 15s linear infinite; transform-origin: center; }
+        .orb-ring-3 { animation: rotate-right 20s linear infinite; transform-origin: center; }
+        .orb-core { animation: pulse 2s ease-in-out infinite; transform-origin: center; }
+
+    </style>
+</head>
+<body class="antialiased">
+    <div class="aurora-background"></div>
+
+    <!-- Header -->
+    <header id="header" class="bg-black/30 backdrop-blur-sm fixed w-full top-0 z-50 transition-shadow">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="text-white font-bold text-2xl tracking-wider">Abhay Singh</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-2">
+                        <a href="#about" class="nav-link">About</a>
+                        <a href="#experience" class="nav-link">Experience</a>
+                        <a href="#projects" class="nav-link">Projects</a>
+                        <a href="#skills" class="nav-link">Skills</a>
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                     <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <span class="sr-only">Open main menu</span>
+                        <i data-lucide="menu" class="block h-6 w-6"></i>
+                        <i data-lucide="x" class="hidden h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="nav-link block text-center">About</a>
+                <a href="#experience" class="nav-link block text-center">Experience</a>
+                <a href="#projects" class="nav-link block text-center">Projects</a>
+                <a href="#skills" class="nav-link block text-center">Skills</a>
+                <a href="#contact" class="nav-link block text-center">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center justify-center text-center relative">
+            <div class="hero-content container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="profile-symbol-container">
+                    <div class="glowing-orb">
+                        <svg viewBox="0 0 100 100" class="orb-ring-1" style="animation-delay: -2s;">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="var(--accent-green)" stroke-width="1" stroke-opacity="0.5" stroke-dasharray="5 5"/>
+                        </svg>
+                        <svg viewBox="0 0 100 100" class="orb-ring-2">
+                            <circle cx="50" cy="50" r="35" fill="none" stroke="var(--accent-green)" stroke-width="1.5" stroke-opacity="0.7"/>
+                        </svg>
+                        <svg viewBox="0 0 100 100" class="orb-ring-3" style="animation-delay: -4s;">
+                            <circle cx="50" cy="50" r="25" fill="none" stroke="var(--accent-green)" stroke-width="1" stroke-opacity="0.4" stroke-dasharray="10 2"/>
+                        </svg>
+                        <svg viewBox="0 0 100 100" class="orb-core">
+                            <circle cx="50" cy="50" r="10" fill="var(--accent-green)"/>
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-4">Abhay Singh</h1>
+                <p class="text-2xl md:text-3xl text-accent-green font-medium mb-8">Sr. Technical Associate | <span id="typewriter"></span></p>
+                <div class="flex justify-center items-center space-x-8 mb-12" id="social-icons">
+                    <a href="mailto:reachabbyy@gmail.com" class="text-gray-300 hover:text-accent-green transition-colors magnetic-icon" aria-label="Email">
+                        <i data-lucide="mail" class="w-9 h-9"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/abhay2023" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-accent-green transition-colors magnetic-icon" aria-label="LinkedIn">
+                        <i data-lucide="linkedin" class="w-9 h-9"></i>
+                    </a>
+                    <a href="https://github.com/Abhay-singh-au" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-accent-green transition-colors magnetic-icon" aria-label="GitHub">
+                         <i data-lucide="github" class="w-9 h-9"></i>
+                    </a>
+                </div>
+                <a href="Abhay-Singh-2025-Resume.pdf" download class="inline-block bg-accent-green text-bg-dark-purple font-bold py-4 px-10 rounded-full text-lg hover:bg-white transition-all duration-300 shadow-lg hover:shadow-accent-green/50 transform hover:-translate-y-1">
+                    Download Resume
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="section-title fade-in">About Me</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-text-muted fade-in">
+                        Results-driven Sr. Technical Associate with expertise in Kubernetes, DevOps, and IT Support. Skilled in diagnosing and resolving complex hardware, software, and cloud infrastructure issues. Experienced in troubleshooting system failures, managing IT service requests, and automating workflows to enhance operational efficiency. Passionate about leveraging advanced diagnostic tools and cutting-edge technologies to drive innovation and ensure seamless IT operations.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-24 bg-black/20">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-title fade-in">Professional Experience</h2>
+                <div class="relative timeline max-w-3xl mx-auto">
+                    <div class="timeline-item mb-12 pl-12 fade-in">
+                        <div class="glass-card p-8">
+                            <p class="text-sm text-accent-green">Jan 2025 - Present</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">Sr. Technical Associate</h3>
+                            <p class="text-lg text-gray-300 font-semibold">Lenovo</p>
+                            <ul class="mt-4 list-disc list-inside text-text-muted space-y-3">
+                                <li>Provided expert-level technical support for premium Lenovo customers, ensuring fast and effective resolution of complex hardware and software issues.</li>
+                                <li>Utilized advanced remote diagnostic tools like Rescue Lens, MSD, and proprietary Lenovo utilities to minimize downtime and accelerate troubleshooting.</li>
+                                <li>Spearheaded key initiatives to enhance the customer experience, resulting in improved resolution times and higher overall customer satisfaction ratings.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item pl-12 fade-in">
+                        <div class="glass-card p-8">
+                            <h3 class="text-2xl font-bold text-white mt-1">Cloud Engineer Intern</h3>
+                            <p class="text-lg text-gray-300 font-semibold">Trainso Training Solutions</p>
+                            <ul class="mt-4 list-disc list-inside text-text-muted space-y-3">
+                                <li>Engineered and managed containerized environments using Docker & Kubernetes to optimize application deployment, scalability, and resource utilization.</li>
+                                <li>Developed and maintained robust CI/CD pipelines with Jenkins, significantly reducing software deployment times and enhancing release reliability.</li>
+                                <li>Automated infrastructure provisioning and configuration management using Terraform and Ansible, improving system efficiency and drastically reducing manual interventions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-title fade-in">Featured Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glass-card p-8 fade-in">
+                        <h3 class="text-2xl font-bold text-white mb-2">Portfolio AI Assistant</h3>
+                        <p class="text-text-muted mb-4">An interactive AI-powered assistant integrated into this portfolio. Users can input a job description, and the tool uses the Gemini API to generate tailored interview questions, demonstrating practical AI application.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Gemini API</span>
+                            <span class="skill-tag">Tailwind CSS</span>
+                        </div>
+                    </div>
+                    <div class="glass-card p-8 fade-in">
+                        <h3 class="text-2xl font-bold text-white mb-2">Automated Cloud Provisioning</h3>
+                        <p class="text-text-muted mb-4">Developed a set of Terraform and Ansible scripts to automate the deployment of a multi-service application on AWS, including VPC, subnets, security groups, and EC2 instances. Reduced deployment time by 90%.</p>
+                         <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag">Terraform</span>
+                            <span class="skill-tag">Ansible</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-24 bg-black/20">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-title fade-in">Technical Skills</h2>
+                <div class="max-w-4xl mx-auto">
+                    <div class="glass-card p-8 fade-in">
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-4">Cloud & DevOps</h3>
+                                <div class="flex flex-col space-y-2"><span>Azure</span><span>AWS</span><span>Kubernetes</span><span>Docker</span><span>Terraform</span><span>Ansible</span><span>CI/CD</span></div>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-4">IT Support</h3>
+                                <div class="flex flex-col space-y-2"><span>Troubleshooting</span><span>Windows OS</span><span>VMware</span><span>BIOS</span><span>Networking</span><span>VPN</span></div>
+                            </div>
+                             <div>
+                                <h3 class="text-xl font-bold text-white mb-4">Software & Tools</h3>
+                                <div class="flex flex-col space-y-2"><span>JavaScript</span><span>HTML5/CSS3</span><span>SQL</span><span>GitHub</span><span>Microsoft Dynamics</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="section-title fade-in">Get In Touch</h2>
+                <p class="max-w-2xl mx-auto text-lg text-text-muted mb-8 fade-in">
+                    I'm currently open to new opportunities. If you have a role that aligns with my skills and experience, or just want to connect, feel free to reach out!
+                </p>
+                <a href="mailto:reachabbyy@gmail.com" class="inline-block bg-accent-green text-bg-dark-purple font-bold py-4 px-10 rounded-full text-lg hover:bg-white transition-all duration-300 shadow-lg hover:shadow-accent-green/50 transform hover:-translate-y-1 fade-in">
+                    Say Hello
+                </a>
+                
+                <div class="mt-20 max-w-3xl mx-auto text-left fade-in glass-card p-8">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="sparkles" class="w-8 h-8 text-accent-green mr-4"></i>
+                        <h3 class="text-2xl font-bold text-white">AI Assistant</h3>
+                    </div>
+                    <p class="text-text-muted mb-4">
+                        Paste a job description below, and my AI assistant (powered by Gemini) will generate tailored interview questions based on my resume.
+                    </p>
+                    <textarea id="job-description" rows="6" class="w-full bg-gray-700/50 text-text-light rounded-md p-3 focus:ring-2 focus:ring-accent-green focus:outline-none border border-transparent focus:border-accent-green" placeholder="Paste job description here..."></textarea>
+                    <button id="generate-questions-btn" class="mt-4 w-full flex items-center justify-center bg-accent-green text-bg-dark-purple font-bold py-3 px-6 rounded-full hover:bg-white transition-colors shadow-lg disabled:bg-gray-500 disabled:cursor-not-allowed">
+                        <span id="btn-text">Generate Questions</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black/30">
+        <div class="container mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-text-muted">
+            <p>&copy; 2024 Abhay Singh. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Typewriter effect
+        const typewriterElement = document.getElementById('typewriter');
+        const roles = ['DevOps Enthusiast', 'Cloud Practitioner', 'Problem Solver'];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentRole = roles[roleIndex];
+            if (isDeleting) {
+                typewriterElement.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+            }
+            
+            const typingSpeed = isDeleting ? 100 : 150;
+            setTimeout(type, typingSpeed);
+        }
+        
+        document.addEventListener('DOMContentLoaded', type);
+
+        // Fade-in animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        fadeElements.forEach(el => fadeObserver.observe(el));
+
+        // Magnetic Icons
+        const socialIcons = document.getElementById('social-icons');
+        socialIcons.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const icons = socialIcons.querySelectorAll('.magnetic-icon');
+            
+            icons.forEach(icon => {
+                const { left, top, width, height } = icon.getBoundingClientRect();
+                const centerX = left + width / 2;
+                const centerY = top + height / 2;
+                
+                const deltaX = clientX - centerX;
+                const deltaY = clientY - centerY;
+                
+                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                
+                if (distance < 100) {
+                    const moveX = (deltaX / distance) * 10 * (1 - distance / 100);
+                    const moveY = (deltaY / distance) * 10 * (1 - distance / 100);
+                    icon.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                } else {
+                    icon.style.transform = 'translate(0, 0)';
+                }
+            });
+        });
+        
+        socialIcons.addEventListener('mouseleave', () => {
+             socialIcons.querySelectorAll('.magnetic-icon').forEach(icon => {
+                 icon.style.transform = 'translate(0,0)';
+             });
+        });
+
+    </script>
+</body>
+</html>
